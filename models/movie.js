@@ -15,7 +15,7 @@ const movieSchema = new Schema({
   streaming: {type: String},
   watched: {type: Boolean},
   comments: [commentSchema],
-  recBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }
+  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }
 
 },{
   timestamps: true,
