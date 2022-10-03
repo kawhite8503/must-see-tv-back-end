@@ -10,5 +10,6 @@ router.get('/', moviesCtrl.index)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, moviesCtrl.create)
+router.delete('/:id', checkAuth, moviesCtrl.delete)
 
 export { router }
