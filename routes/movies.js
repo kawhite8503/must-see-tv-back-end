@@ -11,5 +11,6 @@ router.get('/', moviesCtrl.index)
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, moviesCtrl.create)
 router.delete('/:id', checkAuth, moviesCtrl.delete)
+router.put('/:id', checkAuth, moviesCtrl.update)
 
 export { router }

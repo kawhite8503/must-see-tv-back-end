@@ -46,9 +46,29 @@ function deleteOne(req,res){
   })
 }
 
+function update(req, res){
+  Movie.findById(req.params.id)
+  .then(movie => {
+    if (movie.owner._id.equals(req.user.profile)){
+      Movie.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .populate('owner')
+      .then(updatedMovie => {
+        res.json(updatedMovie)
+      })
+    } else {
+      res.status(401).json({err: "Not authorized!"})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ err: err.errmsg })
+  })
+}
+
 export {
   create,
   index,
   deleteOne as delete,
+  update,
 
 }
